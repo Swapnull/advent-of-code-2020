@@ -38,6 +38,7 @@ const part2 = () => {
       validCount++;
     }
   });
+
   return validCount;
 };
 

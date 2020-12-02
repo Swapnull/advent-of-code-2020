@@ -4,7 +4,7 @@ A better solution would probably have been something like
 "for each, get goal - item = value to look for. Then do a find."
 */
 
-import inputList from "./day-1-input";
+import inputList from "./input";
 
 const goal = 2020;
 

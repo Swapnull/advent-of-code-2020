@@ -1,4 +1,4 @@
-import inputList from "./day-1-input";
+import inputList from "./input";
 
 const part1 = (goal = 2020) => {
   let res: number = 0;

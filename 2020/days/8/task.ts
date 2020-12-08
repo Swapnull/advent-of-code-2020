@@ -8,12 +8,7 @@ let acc = 0;
 const visited = [];
 let terminate = false;
 
-let i = 0;
-
-console.log("instru", instructions);
-
 while (!terminate) {
-  i++;
   const [action, value] = instructions[pos];
   visited.push(pos);
   console.log(action, value);
@@ -45,7 +40,6 @@ while (!terminate) {
   }
 
   if (action === "nop") {
-    console.log("in nop");
     pos++;
   }
 }

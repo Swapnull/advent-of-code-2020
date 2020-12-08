@@ -13,9 +13,7 @@ const doOneRun = () => {
   let terminate = false;
 
   while (!terminate) {
-    console.log("instru", instructions[pos]);
     if (instructions.length === pos) {
-      console.log("found", acc);
       terminate = true;
       break;
     }
@@ -34,9 +32,8 @@ const doOneRun = () => {
       const newPos = pos + parseInt(value);
 
       if (!hasSwitched && !switched.includes(pos)) {
-        console.log("switcheroo", pos, "jmp -> nop");
         switched.push(pos);
-        pos++; //do nop action
+        pos++;
         hasSwitched = true;
       } else {
         if (visited.includes(newPos)) {
@@ -49,11 +46,8 @@ const doOneRun = () => {
 
     if (action === "nop") {
       if (!hasSwitched && !switched.includes(pos)) {
-        console.log("switcheroo", pos, "nop -> jmp");
-
         switched.push(pos);
         const newPos = pos + parseInt(value);
-
         if (visited.includes(newPos)) {
           terminate = true;
         } else {
@@ -78,6 +72,5 @@ const doOneRun = () => {
 
 let found = false;
 while (!found) {
-  console.log("new run");
   found = doOneRun();
 }

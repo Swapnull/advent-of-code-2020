@@ -6,6 +6,8 @@
   "author": "Martyn Rushton <martyn.e.rushton@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^14.14.10"
+    "@types/lodash": "^4.14.165",
+    "@types/node": "^14.14.10",
+    "lodash": "^4.17.20"
   }
 }

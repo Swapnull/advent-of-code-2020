@@ -8,14 +8,10 @@ const coords = rows.map((row) =>
   row.split(" -> ").map((pos) => pos.split(",").map((n) => Number(n)))
 );
 
-console.log("total", coords.length);
-
 const handleStraightLines = () => {
   const straightLines = coords.filter(
     ([x, y]) => x[0] === y[0] || x[1] === y[1]
   );
-
-  console.log("straights", straightLines.length);
 
   const generateStraightLineCoords = (row: Array<Array<number>>) => {
     const [x, y] = row;
@@ -44,8 +40,6 @@ const handleStraightLines = () => {
 const handleDiagonals = () => {
   const diagonals = coords.filter(([x, y]) => x[0] !== y[0] && x[1] !== y[1]);
 
-  console.log("diagonals", diagonals.length);
-
   const generateDiagonalCoords = (row: Array<Array<number>>) => {
     const [x, y] = row;
 
@@ -55,20 +49,10 @@ const handleDiagonals = () => {
     while (curr[0] !== y[0] && curr[1] !== y[1]) {
       let newX = curr[0];
       let newY = curr[1];
-      if (newX !== y[0]) {
-        if (newX > y[0]) {
-          newX -= 1;
-        } else {
-          newX += 1;
-        }
-      }
-      if (newY !== y[1]) {
-        if (newY > y[1]) {
-          newY -= 1;
-        } else {
-          newY += 1;
-        }
-      }
+
+      if (newX !== y[0]) newX = newX + (newX > y[0] ? -1 : 1);
+      if (newY !== y[1]) newY = newY + (newY > y[1] ? -1 : 1);
+
       foundCoords.push(`${newX}-${newY}`);
       curr = [newX, newY];
     }

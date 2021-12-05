@@ -1,5 +1,4 @@
 import fs from "fs";
-import { uniq } from "lodash";
 import path from "path";
 
 const input = fs.readFileSync(path.join(__dirname, "input.txt"), "utf-8");
@@ -10,8 +9,6 @@ const coords = rows.map((row) =>
 );
 
 const straightLines = coords.filter(([x, y]) => x[0] === y[0] || x[1] === y[1]);
-
-console.log(straightLines.length);
 
 const generateCoords = (row: Array<Array<number>>) => {
   const [x, y] = row;
@@ -33,13 +30,6 @@ const generateCoords = (row: Array<Array<number>>) => {
 
 const allCoords = straightLines.map((line) => generateCoords(line));
 
-/*
-fs.writeFile(
-  path.join(__dirname, "debug.txt"),
-  JSON.stringify({ coords: allCoords.splice(0, 20) }),
-  (err) => console.log(err)
-);*/
-
 const seen: Array<{ id: string; count: number }> = [];
 
 allCoords.flat().map((coord) => {
@@ -50,20 +40,7 @@ allCoords.flat().map((coord) => {
     seen.push({ id: coord, count: 1 });
   }
 });
-
-/*
-fs.writeFile(
-  path.join(__dirname, "debug2.txt"),
-  JSON.stringify({ coords: seen.filter(({ count }) => count > 1) }),
-  (err) => console.log(err)
-);*/
-
 const duplicates = seen.filter(({ count }) => count > 1);
-
-console.log("allCoords", allCoords.flat().length);
-console.log("uniqAllCords", uniq(allCoords.flat()).length);
-
-console.log(seen.length);
 
 console.log(duplicates.length);
 

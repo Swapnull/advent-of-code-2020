@@ -43,6 +43,3 @@ allCoords.flat().map((coord) => {
 const duplicates = seen.filter(({ count }) => count > 1);
 
 console.log(duplicates.length);
-
-// 6898 too low
-// 97703 too high

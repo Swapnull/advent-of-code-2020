@@ -8,6 +8,19 @@ const data = input
   .filter(Boolean)
   .map((entry) => entry.split(" | ").map((item) => item.split(" ")));
 
+const segments = [
+  { num: 0, count: 6 },
+  { num: 1, count: 2 },
+  { num: 2, count: 5 },
+  { num: 3, count: 5 },
+  { num: 4, count: 4 },
+  { num: 5, count: 5 },
+  { num: 6, count: 6 },
+  { num: 7, count: 3 },
+  { num: 8, count: 7 },
+  { num: 9, count: 6 },
+];
+
 const findAnswer = (row) => {
   const [inputs, outputs] = row;
   const signals = inputs.concat(outputs);
@@ -17,33 +30,26 @@ const findAnswer = (row) => {
 
   return outputs
     .map((output) => {
-      let found: number;
-      if (output.length === 2) found = 1;
-      if (output.length === 3) found = 7;
-      if (output.length === 4) found = 4;
-      if (output.length === 7) found = 8;
-      if (output.length === 5) {
-        if (intersection(output.split(""), one).length === 2) {
-          found = 3;
-        } else {
-          if (intersection(output.split(""), four).length === 2) {
-            found = 2;
+      const possibilities = segments.filter(
+        (seg) => seg.count === output.length
+      );
+      if (possibilities.length === 1) return possibilities[0].num;
+      else {
+        if (output.length === 5) {
+          if (intersection(output.split(""), one).length === 2) {
+            return 3;
           } else {
-            found = 5;
+            return intersection(output.split(""), four).length === 2 ? 2 : 5;
+          }
+        }
+        if (output.length === 6) {
+          if (intersection(output.split(""), four).length === 4) {
+            return 9;
+          } else {
+            return intersection(output.split(""), one).length === 2 ? 0 : 6;
           }
         }
       }
-      if (output.length === 6) {
-        if (intersection(output.split(""), four).length === 4) {
-          found = 9;
-        } else {
-          if (intersection(output.split(""), one).length === 2) {
-            found = 0;
-          } else found = 6;
-        }
-      }
-
-      return found;
     })
     .join("");
 };

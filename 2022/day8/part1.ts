@@ -1,5 +1,4 @@
 import fs from "fs";
-import { isNaN, size, sum, uniq } from "lodash";
 
 const input = fs
   .readFileSync("input.txt", "utf-8")

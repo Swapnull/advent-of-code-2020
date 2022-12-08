@@ -7,7 +7,7 @@ const startPoint = 4;
 
 for (let i = 0; i < input.length; i++) {
   if (uniq(input.slice(i, i + startPoint)).length === startPoint) {
-    console.log("found", i + startPoint);
+    console.log("found", i + startPoint, input.slice(i, i + startPoint));
     break;
   }
 }

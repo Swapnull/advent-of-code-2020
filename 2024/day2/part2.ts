@@ -52,3 +52,5 @@ rows.forEach((row) => {
 });
 
 console.log(results.filter((r) => r).length);
+
+//540
